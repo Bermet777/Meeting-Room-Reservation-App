@@ -21,7 +21,7 @@ export type BookingFormData = {
   lastName: string;
   email: string;
   adultCount: number;
-  childCount: number;
+  // childCount: number;
   checkIn: string;
   checkOut: string;
   hotelId: string;
@@ -56,7 +56,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
       lastName: currentUser.lastName,
       email: currentUser.email,
       adultCount: search.adultCount,
-      childCount: search.childCount,
+      // childCount: search.childCount,
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
       hotelId: hotelId,
@@ -125,7 +125,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
 
         <div className="bg-blue-200 p-4 rounded-md">
           <div className="font-semibold text-lg">
-            Total Cost: £{paymentIntent.totalCost.toFixed(2)}
+            Total Cost: ${paymentIntent.totalCost.toFixed(2)}
           </div>
           <div className="text-xs">Includes taxes and charges</div>
         </div>

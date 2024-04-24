@@ -60,7 +60,7 @@ const Booking = () => {
         checkIn={search.checkIn}
         checkOut={search.checkOut}
         adultCount={search.adultCount}
-        childCount={search.childCount}
+        // childCount={search.childCount}
         numberOfNights={numberOfNights}
         hotel={hotel}
       />

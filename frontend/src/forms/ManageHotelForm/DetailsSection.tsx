@@ -9,7 +9,7 @@ const DetailsSection = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-bold mb-3">Add Hotel</h1>
+      <h1 className="text-3xl font-bold mb-3">{window.location.pathname.includes('edit') ? 'Edit' : 'Add'} Meeting Room</h1>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Name
         <input
@@ -24,7 +24,7 @@ const DetailsSection = () => {
 
       <div className="flex gap-4">
         <label className="text-gray-700 text-sm font-bold flex-1">
-          City
+          Location
           <input
             type="text"
             className="border rounded w-full py-1 px-2 font-normal"
@@ -35,7 +35,7 @@ const DetailsSection = () => {
           )}
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
-          Country
+          Campus
           <input
             type="text"
             className="border rounded w-full py-1 px-2 font-normal"
@@ -58,7 +58,7 @@ const DetailsSection = () => {
         )}
       </label>
       <label className="text-gray-700 text-sm font-bold max-w-[50%]">
-        Price Per Night
+        Price Per Day
         <input
           type="number"
           min={1}

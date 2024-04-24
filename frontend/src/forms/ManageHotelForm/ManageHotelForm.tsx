@@ -19,7 +19,7 @@ export type HotelFormData = {
   imageFiles: FileList;
   imageUrls: string[];
   adultCount: number;
-  childCount: number;
+  // childCount: number;
 };
 
 type Props = {
@@ -49,7 +49,7 @@ const ManageHotelForm = ({ onSave, isLoading, hotel }: Props) => {
     formData.append("pricePerNight", formDataJson.pricePerNight.toString());
     formData.append("starRating", formDataJson.starRating.toString());
     formData.append("adultCount", formDataJson.adultCount.toString());
-    formData.append("childCount", formDataJson.childCount.toString());
+    // formData.append("childCount", formDataJson.childCount.toString());
 
     formDataJson.facilities.forEach((facility, index) => {
       formData.append(`facilities[${index}]`, facility);

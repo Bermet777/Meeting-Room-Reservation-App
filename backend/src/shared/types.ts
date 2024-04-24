@@ -15,7 +15,7 @@ export type HotelType = {
   description: string;
   type: string;
   adultCount: number;
-  childCount: number;
+  // childCount: number;
   facilities: string[];
   pricePerNight: number;
   starRating: number;
@@ -31,7 +31,7 @@ export type BookingType = {
   lastName: string;
   email: string;
   adultCount: number;
-  childCount: number;
+  // childCount: number;
   checkIn: Date;
   checkOut: Date;
   totalCost: number;

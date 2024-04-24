@@ -23,7 +23,7 @@ const Search = () => {
     checkIn: search.checkIn.toISOString(),
     checkOut: search.checkOut.toISOString(),
     adultCount: search.adultCount.toString(),
-    childCount: search.childCount.toString(),
+    // childCount: search.childCount.toString(),
     page: page.toString(),
     stars: selectedStars,
     types: selectedHotelTypes,
@@ -96,7 +96,7 @@ const Search = () => {
       <div className="flex flex-col gap-5">
         <div className="flex justify-between items-center">
           <span className="text-xl font-bold">
-            {hotelData?.pagination.total} Hotels found
+            {hotelData?.pagination.total} Meeting Rooms found
             {search.destination ? ` in ${search.destination}` : ""}
           </span>
           <select
@@ -107,10 +107,10 @@ const Search = () => {
             <option value="">Sort By</option>
             <option value="starRating">Star Rating</option>
             <option value="pricePerNightAsc">
-              Price Per Night (low to high)
+              Price Per Day (low to high)
             </option>
             <option value="pricePerNightDesc">
-              Price Per Night (high to low)
+              Price Per Day (high to low)
             </option>
           </select>
         </div>

@@ -102,7 +102,7 @@ router.post(
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCost * 100,
-      currency: "gbp",
+      currency: "usd",
       metadata: {
         hotelId,
         userId: req.userId,
@@ -192,11 +192,11 @@ const constructSearchQuery = (queryParams: any) => {
     };
   }
 
-  if (queryParams.childCount) {
-    constructedQuery.childCount = {
-      $gte: parseInt(queryParams.childCount),
-    };
-  }
+  // if (queryParams.childCount) {
+  //   constructedQuery.childCount = {
+  //     $gte: parseInt(queryParams.childCount),
+  //   };
+  // }
 
   if (queryParams.facilities) {
     constructedQuery.facilities = {

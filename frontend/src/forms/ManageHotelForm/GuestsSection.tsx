@@ -12,7 +12,7 @@ const GuestsSection = () => {
       <h2 className="text-2xl font-bold mb-3">Guests</h2>
       <div className="grid grid-cols-2 p-6 gap-5 bg-gray-300">
         <label className="text-gray-700 text-sm font-semibold">
-          Adults
+          Guest Count
           <input
             className="border rounded w-full py-2 px-3 font-normal"
             type="number"
@@ -27,7 +27,7 @@ const GuestsSection = () => {
             </span>
           )}
         </label>
-        <label className="text-gray-700 text-sm font-semibold">
+        {/* <label className="text-gray-700 text-sm font-semibold">
           Children
           <input
             className="border rounded w-full py-2 px-3 font-normal"
@@ -42,7 +42,7 @@ const GuestsSection = () => {
               {errors.childCount?.message}
             </span>
           )}
-        </label>
+        </label> */}
       </div>
     </div>
   );
