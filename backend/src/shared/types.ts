@@ -6,7 +6,7 @@ export type UserType = {
   lastName: string;
 };
 
-export type HotelType = {
+export type MeetingRoomType = {
   _id: string;
   userId: string;
   name: string;
@@ -21,10 +21,10 @@ export type HotelType = {
   starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
-  bookings: BookingType[];
+  bookings: ReservationType[];
 };
 
-export type BookingType = {
+export type ReservationType = {
   _id: string;
   userId: string;
   firstName: string;
@@ -37,8 +37,8 @@ export type BookingType = {
   totalCost: number;
 };
 
-export type HotelSearchResponse = {
-  data: HotelType[];
+export type MeetingRoomSearchResponse = {
+  data: MeetingRoomType[];
   pagination: {
     total: number;
     page: number;

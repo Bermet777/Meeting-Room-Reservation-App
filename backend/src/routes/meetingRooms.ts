@@ -1,46 +1,49 @@
-import express, { Request, Response } from "express";
-import Hotel from "../models/hotel";
-import { BookingType, HotelSearchResponse } from "../shared/types";
-import { param, validationResult } from "express-validator";
-import Stripe from "stripe";
-import verifyToken from "../middleware/auth";
+import express, { Request, Response } from 'express';
+import MeetingRoom from '../models/meetingRoom';
+import {
+  ReservationType,
+  MeetingRoomSearchResponse,
+} from '../shared/types';
+import { param, validationResult } from 'express-validator';
+import Stripe from 'stripe';
+import verifyToken from '../middleware/auth';
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 const router = express.Router();
 
-router.get("/search", async (req: Request, res: Response) => {
+router.get('/search', async (req: Request, res: Response) => {
   try {
     const query = constructSearchQuery(req.query);
 
     let sortOptions = {};
     switch (req.query.sortOption) {
-      case "starRating":
+      case 'starRating':
         sortOptions = { starRating: -1 };
         break;
-      case "pricePerNightAsc":
+      case 'pricePerNightAsc':
         sortOptions = { pricePerNight: 1 };
         break;
-      case "pricePerNightDesc":
+      case 'pricePerNightDesc':
         sortOptions = { pricePerNight: -1 };
         break;
     }
 
     const pageSize = 5;
     const pageNumber = parseInt(
-      req.query.page ? req.query.page.toString() : "1"
+      req.query.page ? req.query.page.toString() : '1'
     );
     const skip = (pageNumber - 1) * pageSize;
 
-    const hotels = await Hotel.find(query)
+    const meetingRooms = await MeetingRoom.find(query)
       .sort(sortOptions)
       .skip(skip)
       .limit(pageSize);
 
-    const total = await Hotel.countDocuments(query);
+    const total = await MeetingRoom.countDocuments(query);
 
-    const response: HotelSearchResponse = {
-      data: hotels,
+    const response: MeetingRoomSearchResponse = {
+      data: meetingRooms,
       pagination: {
         total,
         page: pageNumber,
@@ -50,24 +53,24 @@ router.get("/search", async (req: Request, res: Response) => {
 
     res.json(response);
   } catch (error) {
-    console.log("error", error);
-    res.status(500).json({ message: "Something went wrong" });
+    console.log('error', error);
+    res.status(500).json({ message: 'Something went wrong' });
   }
 });
 
-router.get("/", async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
-    const hotels = await Hotel.find().sort("-lastUpdated");
-    res.json(hotels);
+    const meetingRooms = await MeetingRoom.find().sort('-lastUpdated');
+    res.json(meetingRooms);
   } catch (error) {
-    console.log("error", error);
-    res.status(500).json({ message: "Error fetching hotels" });
+    console.log('error', error);
+    res.status(500).json({ message: 'Error fetching meeting rooms' });
   }
 });
 
 router.get(
-  "/:id",
-  [param("id").notEmpty().withMessage("Hotel ID is required")],
+  '/:id',
+  [param('id').notEmpty().withMessage('Meeting Room ID is required')],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -77,40 +80,42 @@ router.get(
     const id = req.params.id.toString();
 
     try {
-      const hotel = await Hotel.findById(id);
-      res.json(hotel);
+      const meetingRooms = await MeetingRoom.findById(id);
+      res.json(meetingRooms);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "Error fetching hotel" });
+      res.status(500).json({ message: 'Error fetching meeting room' });
     }
   }
 );
 
 router.post(
-  "/:hotelId/bookings/payment-intent",
+  '/:meetingRoomId/bookings/payment-intent',
   verifyToken,
   async (req: Request, res: Response) => {
     const { numberOfNights } = req.body;
-    const hotelId = req.params.hotelId;
+    const meetingRoomId = req.params.meetingRoomId;
 
-    const hotel = await Hotel.findById(hotelId);
-    if (!hotel) {
-      return res.status(400).json({ message: "Hotel not found" });
+    const meetingRoom = await MeetingRoom.findById(meetingRoomId);
+    if (!meetingRoom) {
+      return res.status(400).json({ message: 'Meeting Room not found' });
     }
 
-    const totalCost = hotel.pricePerNight * numberOfNights;
+    const totalCost = meetingRoom.pricePerNight * numberOfNights;
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCost * 100,
-      currency: "usd",
+      currency: 'usd',
       metadata: {
-        hotelId,
+        meetingRoomId: meetingRoomId,
         userId: req.userId,
       },
     });
 
     if (!paymentIntent.client_secret) {
-      return res.status(500).json({ message: "Error creating payment intent" });
+      return res
+        .status(500)
+        .json({ message: 'Error creating payment intent' });
     }
 
     const response = {
@@ -124,7 +129,7 @@ router.post(
 );
 
 router.post(
-  "/:hotelId/bookings",
+  '/:meetingRoomId/bookings',
   verifyToken,
   async (req: Request, res: Response) => {
     try {
@@ -135,43 +140,47 @@ router.post(
       );
 
       if (!paymentIntent) {
-        return res.status(400).json({ message: "payment intent not found" });
+        return res
+          .status(400)
+          .json({ message: 'payment intent not found' });
       }
 
       if (
-        paymentIntent.metadata.hotelId !== req.params.hotelId ||
+        paymentIntent.metadata.meetingRoomId !== req.params.meetingRoomId ||
         paymentIntent.metadata.userId !== req.userId
       ) {
-        return res.status(400).json({ message: "payment intent mismatch" });
+        return res
+          .status(400)
+          .json({ message: 'payment intent mismatch' });
       }
 
-      if (paymentIntent.status !== "succeeded") {
+      if (paymentIntent.status !== 'succeeded') {
         return res.status(400).json({
           message: `payment intent not succeeded. Status: ${paymentIntent.status}`,
         });
       }
 
-      const newBooking: BookingType = {
+      const newBooking: ReservationType = {
         ...req.body,
         userId: req.userId,
       };
 
-      const hotel = await Hotel.findOneAndUpdate(
-        { _id: req.params.hotelId },
+      const meetingRoom = await MeetingRoom.findOneAndUpdate(
+        { _id: req.params.meetingRoomId },
         {
           $push: { bookings: newBooking },
         }
       );
 
-      if (!hotel) {
-        return res.status(400).json({ message: "hotel not found" });
+      if (!meetingRoom) {
+        return res.status(400).json({ message: 'meeting room not found' });
       }
 
-      await hotel.save();
+      await meetingRoom.save();
       res.status(200).send();
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "something went wrong" });
+      res.status(500).json({ message: 'something went wrong' });
     }
   }
 );
@@ -181,8 +190,8 @@ const constructSearchQuery = (queryParams: any) => {
 
   if (queryParams.destination) {
     constructedQuery.$or = [
-      { city: new RegExp(queryParams.destination, "i") },
-      { country: new RegExp(queryParams.destination, "i") },
+      { city: new RegExp(queryParams.destination, 'i') },
+      { country: new RegExp(queryParams.destination, 'i') },
     ];
   }
 

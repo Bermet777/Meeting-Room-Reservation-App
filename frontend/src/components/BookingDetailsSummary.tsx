@@ -1,4 +1,4 @@
-import { HotelType } from "../../../backend/src/shared/types";
+import { MeetingRoomType } from '../../../backend/src/shared/types';
 
 type Props = {
   checkIn: Date;
@@ -6,7 +6,7 @@ type Props = {
   adultCount: number;
   // childCount: number;
   numberOfNights: number;
-  hotel: HotelType;
+  hotel: MeetingRoomType;
 };
 
 const BookingDetailsSummary = ({
@@ -40,7 +40,7 @@ const BookingDetailsSummary = ({
       </div>
 
       <div>
-        Guests{" "}
+        Guests{' '}
         <div className="font-bold">
           {adultCount} guests {/* {childCount} children */}
         </div>
