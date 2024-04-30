@@ -4,7 +4,7 @@ import * as apiClient from "../api-client";
 import { useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
-import StarRatingFilter from "../components/StarRatingFilter";
+// import StarRatingFilter from "../components/StarRatingFilter";
 import HotelTypesFilter from "../components/HotelTypesFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
@@ -36,15 +36,15 @@ const Search = () => {
     apiClient.searchHotels(searchParams)
   );
 
-  const handleStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const starRating = event.target.value;
+  // const handleStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const starRating = event.target.value;
 
-    setSelectedStars((prevStars) =>
-      event.target.checked
-        ? [...prevStars, starRating]
-        : prevStars.filter((star) => star !== starRating)
-    );
-  };
+  //   setSelectedStars((prevStars) =>
+  //     event.target.checked
+  //       ? [...prevStars, starRating]
+  //       : prevStars.filter((star) => star !== starRating)
+  //   );
+  // };
 
   const handleHotelTypeChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -75,10 +75,10 @@ const Search = () => {
           <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
             Filter by:
           </h3>
-          <StarRatingFilter
+          {/* <StarRatingFilter
             selectedStars={selectedStars}
             onChange={handleStarsChange}
-          />
+          /> */}
           <HotelTypesFilter
             selectedHotelTypes={selectedHotelTypes}
             onChange={handleHotelTypeChange}
@@ -105,7 +105,7 @@ const Search = () => {
             className="p-2 border rounded-md"
           >
             <option value="">Sort By</option>
-            <option value="starRating">Star Rating</option>
+            {/* <option value="starRating">Star Rating</option> */}
             <option value="pricePerNightAsc">
               Price Per Day (low to high)
             </option>

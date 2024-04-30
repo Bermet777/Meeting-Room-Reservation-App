@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client";
-import { AiFillStar } from "react-icons/ai";
+// import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 
 const Detail = () => {
@@ -22,11 +22,11 @@ const Detail = () => {
   return (
     <div className="space-y-6">
       <div>
-        <span className="flex">
+        {/* <span className="flex">
           {Array.from({ length: hotel.starRating }).map(() => (
             <AiFillStar className="fill-yellow-400" />
           ))}
-        </span>
+        </span> */}
         <h1 className="text-3xl font-bold">{hotel.name}</h1>
       </div>
 
