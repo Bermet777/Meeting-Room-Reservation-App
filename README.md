@@ -1,5 +1,5 @@
 # Online Meeting room booking app
-# Setting Up the MERN Booking App
+# Setting Up the Meeting room Booking App
 
 This guide will walk you through the process of setting up the MERN Booking App on your local machine.
 
@@ -13,7 +13,7 @@ Start by cloning the repository to your local machine:
 
 ```bash
 https://github.com/Bermet777/Meeting-Room-Reservation-App.git
-cd mern-booking-app
+cd booking
 ```
 
 ## Backend Configuration
