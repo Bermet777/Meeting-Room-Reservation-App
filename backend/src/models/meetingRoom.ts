@@ -6,7 +6,7 @@ const reservationSchema = new mongoose.Schema<ReservationType>({
   lastName: { type: String, required: true },
   email: { type: String, required: true },
   adultCount: { type: Number, required: true },
-  // childCount: { type: Number, required: false },
+
   checkIn: { type: Date, required: true },
   checkOut: { type: Date, required: true },
   userId: { type: String, required: true },
@@ -21,7 +21,7 @@ const meetingRoomSchema = new mongoose.Schema<MeetingRoomType>({
   description: { type: String, required: true },
   type: { type: String, required: true },
   adultCount: { type: Number, required: true },
-  // childCount: { type: Number, required: false },
+  
   facilities: [{ type: String, required: true }],
   pricePerNight: { type: Number, required: true },
   starRating: { type: Number, required: true, min: 1, max: 5 },
