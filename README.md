@@ -1,7 +1,7 @@
 # Online Meeting room booking app
 # Setting Up the Meeting room Booking App
 
-This guide will walk you through the process of setting up the MERN Booking App on your local machine.
+This is an online meeting room booking application.
 
 ## Prerequisite
 
