@@ -4,7 +4,7 @@ type Props = {
   checkIn: Date;
   checkOut: Date;
   adultCount: number;
-  // childCount: number;
+
   numberOfNights: number;
   hotel: MeetingRoomType;
 };
@@ -13,7 +13,7 @@ const BookingDetailsSummary = ({
   checkIn,
   checkOut,
   adultCount,
-  // childCount,
+
   numberOfNights,
   hotel,
 }: Props) => {
