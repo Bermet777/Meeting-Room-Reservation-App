@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { ReservationType, MeetingRoomType } from '../shared/types';
-//app models
+//application models
 const reservationSchema = new mongoose.Schema<ReservationType>({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
