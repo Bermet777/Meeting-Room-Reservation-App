@@ -1,7 +1,7 @@
 # Online Meeting room booking app
 # Setting Up the Meeting room Booking App
 
-This is an online meeting room booking application.The Online Meeting Room Booking Application aims to enhance the process of reserving and managing meeting rooms within  university, providing an intuitive and user-friendly platform for both students and faculty. Kea features of the application are: User-Friendly Reservation System, Real-Time Availability Updates, Academic Calendar Integration, Event Planning, Integration with University Learning Management System.
+This is an online meeting room booking application.The Online Meeting Room Booking Application aims to enhance the process of reserving and managing meeting rooms within  university, providing an intuitive and user-friendly platform for both students and faculty. Key features of the application are: User-Friendly Reservation System, Real-Time Availability Updates, Academic Calendar Integration, Event Planning, Integration with University Learning Management System.
 
 
 ## Prerequisite
