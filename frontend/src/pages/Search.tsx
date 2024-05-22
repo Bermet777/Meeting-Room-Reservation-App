@@ -36,15 +36,7 @@ const Search = () => {
     apiClient.searchHotels(searchParams)
   );
 
-  // const handleStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const starRating = event.target.value;
 
-  //   setSelectedStars((prevStars) =>
-  //     event.target.checked
-  //       ? [...prevStars, starRating]
-  //       : prevStars.filter((star) => star !== starRating)
-  //   );
-  // };
 
   const handleHotelTypeChange = (
     event: React.ChangeEvent<HTMLInputElement>
