@@ -13,6 +13,7 @@ Before you begin, ensure you have Node.js installed on your system.
 Start by cloning the repository to your local machine:
 
 ```bash
+follow the link
 https://github.com/Bermet777/Meeting-Room-Reservation-App.git
 cd booking
 ```
