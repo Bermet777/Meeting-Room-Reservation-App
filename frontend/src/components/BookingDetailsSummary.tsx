@@ -26,7 +26,7 @@ const BookingDetailsSummary = ({
       </div>
       <div className="flex justify-between">
         <div>
-          Reserve Start Date:
+          Booking Start Date:
           <div className="font-bold"> {checkIn.toDateString()}</div>
         </div>
         <div>
