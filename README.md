@@ -118,7 +118,6 @@ cd booking
     - In VS Code install the [Playwright extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)
     - Navigate to the `e2e-tests` directory.
     - Install dependencies: `npm install`.
-    - Start the frontend and backend server using the steps above
     - [Using the Playwright extension to run the tests](https://playwright.dev/docs/getting-started-vscode#running-tests)
 
 
