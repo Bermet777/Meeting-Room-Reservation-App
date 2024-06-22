@@ -17,6 +17,10 @@ const BookingDetailsSummary = ({
   numberOfNights,
   hotel,
 }: Props) => {
+//making sure checkin checkout not null
+  if (!hotel || !checkIn || !checkOut) {
+    return <div>Invalid booking details</div>;
+  }
   return (
     <div className="grid gap-4 rounded-lg border border-slate-300 p-5 h-fit">
       <h2 className="text-xl font-bold">Booking Details</h2>
